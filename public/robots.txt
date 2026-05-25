@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://halliday2026.github.io/obsenior_website/sitemap-index.xml

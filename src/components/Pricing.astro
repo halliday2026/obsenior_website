@@ -1,0 +1,262 @@
+---
+// TODO: Confirm all pricing with Donna before launch.
+// Current rates are from the business spec — verify they are still accurate.
+const plans = [
+  {
+    name: 'Starter',
+    hours: '4 hours / week',
+    price: '$640 – $800',
+    unit: '/ month',
+    featured: false,
+    features: [
+      'Up to 4 hours of support per week',
+      'Administrative & scheduling help',
+      'Errand coordination',
+      'Email & technology assistance',
+      'Complimentary initial consultation',
+    ],
+    cta: 'Get Started',
+  },
+  {
+    name: 'Standard',
+    hours: '8 hours / week',
+    price: '$1,280 – $1,600',
+    unit: '/ month',
+    featured: true,
+    features: [
+      'Up to 8 hours of support per week',
+      'All Starter services, plus:',
+      'Transportation to appointments',
+      'Personal organization assistance',
+      'Companion visits & wellness check-ins',
+      'Complimentary initial consultation',
+    ],
+    cta: 'Get Started',
+  },
+  {
+    name: 'Premium',
+    hours: '12+ hours / week',
+    price: 'Custom',
+    unit: 'pricing',
+    featured: false,
+    features: [
+      '12+ hours of tailored support per week',
+      'All Standard services, plus:',
+      'Priority scheduling',
+      'Expanded task scope',
+      'Regular family communication updates',
+      'Complimentary initial consultation',
+    ],
+    cta: 'Let\'s Talk',
+  },
+];
+---
+<section id="pricing" class="pricing" aria-labelledby="pricing-heading">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-label">Flexible Plans</p>
+      <h2 id="pricing-heading">Simple, Honest Pricing</h2>
+      <div class="divider"></div>
+      <p class="section-intro">
+        No contracts. No hidden fees. Every plan begins with a complimentary
+        consultation, and support is always tailored to the individual.
+      </p>
+    </div>
+
+    <ul class="pricing-grid" role="list">
+      {plans.map(plan => (
+        <li class:list={['plan-card', { 'plan-card--featured': plan.featured }]}>
+          {plan.featured && (
+            <div class="plan-badge" aria-label="Most popular plan">Most Popular</div>
+          )}
+          <div class="plan-header">
+            <h3>{plan.name}</h3>
+            <p class="plan-hours">{plan.hours}</p>
+          </div>
+          <div class="plan-price">
+            <span class="price-amount">{plan.price}</span>
+            <span class="price-unit">{plan.unit}</span>
+          </div>
+          <ul class="plan-features" role="list">
+            {plan.features.map(f => <li>{f}</li>)}
+          </ul>
+          <a
+            href="#contact"
+            class:list={['btn', plan.featured ? 'btn-primary' : 'btn-outline', plan.featured ? '' : 'btn-ink']}
+          >
+            {plan.cta}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <p class="pricing-note reveal">
+      Custom packages and hourly arrangements are also available.
+      <a href="#contact">Contact us</a> to discuss what works best for your situation.
+      <!-- NOTE: All pricing above should be confirmed with Donna before the site goes live. -->
+    </p>
+  </div>
+</section>
+
+<style>
+  .pricing {
+    background: var(--surface);
+  }
+
+  .section-header { margin-bottom: 3rem; }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0 0 2rem;
+    padding: 0;
+    align-items: start;
+  }
+
+  .plan-card {
+    background: var(--cream);
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    border: 1px solid rgb(31 58 82 / 0.08);
+    position: relative;
+    transition: box-shadow var(--transition);
+  }
+
+  .plan-card:hover { box-shadow: var(--shadow-md); }
+
+  .plan-card--featured {
+    background: var(--ink);
+    border-color: var(--ink);
+    box-shadow: var(--shadow-md);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .plan-card--featured {
+      transform: scale(1.03);
+    }
+  }
+
+  .plan-badge {
+    position: absolute;
+    top: -0.875rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: var(--surface);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 1rem;
+    border-radius: 2rem;
+    white-space: nowrap;
+  }
+
+  .plan-header { }
+
+  .plan-card h3 {
+    color: var(--ink);
+    font-size: 1.35rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .plan-card--featured h3 { color: var(--cream); }
+
+  .plan-hours {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .plan-card--featured .plan-hours { color: rgb(247 243 236 / 0.65); }
+
+  .plan-price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    padding-block: 0.5rem;
+    border-block: 1px solid rgb(31 58 82 / 0.1);
+  }
+
+  .plan-card--featured .plan-price {
+    border-color: rgb(255 255 255 / 0.1);
+  }
+
+  .price-amount {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .plan-card--featured .price-amount { color: var(--cream); }
+
+  .price-unit {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .plan-card--featured .price-unit { color: rgb(247 243 236 / 0.65); }
+
+  .plan-features {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+  }
+
+  .plan-features li {
+    font-size: 0.9rem;
+    color: var(--muted);
+    padding-left: 1.4rem;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .plan-card--featured .plan-features li { color: rgb(247 243 236 / 0.8); }
+
+  .plan-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--sage);
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .plan-card--featured .btn-outline {
+    color: var(--cream);
+    border-color: rgb(255 255 255 / 0.4);
+  }
+
+  .plan-card--featured .btn-outline:hover {
+    background: var(--cream);
+    color: var(--ink);
+    border-color: var(--cream);
+  }
+
+  .pricing-note {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--muted);
+    max-width: none;
+  }
+
+  .pricing-note a { color: var(--accent); font-weight: 500; }
+
+  @media (max-width: 900px) {
+    .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin-inline: auto; }
+
+    .plan-card--featured {
+      transform: none;
+      order: -1;
+    }
+  }
+</style>

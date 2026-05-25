@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44" height="44">
+  <!-- OB Senior Concierge monogram favicon — hardcoded values (no CSS custom properties) -->
+  <circle cx="22" cy="22" r="20.5" fill="#1f3a52" stroke="#b08d4f" stroke-width="1.25"/>
+  <text
+    x="22"
+    y="30"
+    text-anchor="middle"
+    font-family="Cormorant Garamond, Georgia, 'Times New Roman', serif"
+    font-size="18"
+    font-weight="600"
+    letter-spacing="1"
+    fill="#f7f3ec"
+  >OB</text>
+</svg>

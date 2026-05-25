@@ -1,0 +1,216 @@
+---
+import OBMonogram from './OBMonogram.astro';
+const base = import.meta.env.BASE_URL;
+---
+<footer class="site-footer" role="contentinfo">
+  <div class="container footer-inner">
+
+    <div class="footer-brand">
+      <a href={`${base}#hero`} class="footer-logo-link" aria-label="OB Senior Concierge — back to top">
+        <OBMonogram size={36} />
+        <div class="footer-wordmark">
+          <span class="wordmark-name">OB Senior Concierge</span>
+          <span class="wordmark-tag">Professional Support for Independent Living</span>
+        </div>
+      </a>
+      <p class="footer-tagline">
+        Trusted, non-medical concierge support for seniors and their families in
+        Carmel Valley, Rancho Bernardo, and North County San Diego.
+      </p>
+    </div>
+
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <p class="footer-nav-label">Navigation</p>
+      <ul role="list">
+        <li><a href={`${base}#services`}>Services</a></li>
+        <li><a href={`${base}#how-it-works`}>How It Works</a></li>
+        <li><a href={`${base}#pricing`}>Pricing</a></li>
+        <li><a href={`${base}#about`}>About</a></li>
+        <li><a href={`${base}#contact`}>Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer-contact">
+      <p class="footer-nav-label">Contact Us</p>
+      <div class="footer-contact-item">
+        <a href="tel:8587221930">858-722-1930</a>
+      </div>
+      <div class="footer-contact-item">
+        <a href="mailto:obpmservices@gmail.com">obpmservices@gmail.com</a>
+      </div>
+      <div class="footer-contact-item footer-hours">
+        Monday – Friday<br />9:00 am – 5:00 pm PT
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>
+        &copy; <span id="footer-year"></span> OB Senior Concierge. All rights reserved.
+      </p>
+      <p class="footer-disclaimer">
+        Non-medical support services only. OB Senior Concierge does not provide
+        medical, nursing, or clinical care.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--ink);
+    color: var(--cream);
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: clamp(2rem, 5vw, 4rem);
+    padding-block: 3.5rem 2rem;
+    align-items: start;
+  }
+
+  /* Brand column */
+  .footer-logo-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--cream);
+    margin-bottom: 1rem;
+  }
+
+  .footer-wordmark {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+
+  .wordmark-name {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--cream);
+  }
+
+  .wordmark-tag {
+    font-size: 0.58rem;
+    color: rgb(247 243 236 / 0.55);
+    letter-spacing: 0.04em;
+  }
+
+  .footer-tagline {
+    font-size: 0.85rem;
+    color: rgb(247 243 236 / 0.6);
+    line-height: 1.65;
+    max-width: 36ch;
+  }
+
+  /* Nav column */
+  .footer-nav { }
+
+  .footer-nav-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+    max-width: none;
+  }
+
+  .footer-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .footer-nav a {
+    font-size: 0.9rem;
+    color: rgb(247 243 236 / 0.75);
+    text-decoration: none;
+    transition: color var(--transition);
+    white-space: nowrap;
+  }
+
+  .footer-nav a:hover { color: var(--cream); }
+
+  /* Contact column */
+  .footer-contact { }
+
+  .footer-contact-item {
+    font-size: 0.9rem;
+    color: rgb(247 243 236 / 0.75);
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-contact-item a {
+    color: rgb(247 243 236 / 0.75);
+    text-decoration: none;
+    transition: color var(--transition);
+  }
+
+  .footer-contact-item a:hover { color: var(--cream); }
+
+  .footer-hours {
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    color: rgb(247 243 236 / 0.5);
+    line-height: 1.5;
+  }
+
+  /* Bottom bar */
+  .footer-bottom {
+    border-top: 1px solid rgb(255 255 255 / 0.08);
+    padding-block: 1.25rem;
+  }
+
+  .footer-bottom-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .footer-bottom p {
+    font-size: 0.78rem;
+    color: rgb(247 243 236 / 0.4);
+    max-width: none;
+  }
+
+  .footer-disclaimer {
+    font-size: 0.72rem !important;
+    font-style: italic;
+  }
+
+  @media (max-width: 820px) {
+    .footer-inner {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-brand {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-bottom-inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
+
+<script>
+  const el = document.getElementById('footer-year');
+  if (el) el.textContent = String(new Date().getFullYear());
+</script>

@@ -1,0 +1,447 @@
+---
+// IMPORTANT: Replace REPLACE_FORM_ID with your actual Formspree form ID before launch.
+// Steps to get your Formspree ID:
+//   1. Go to https://formspree.io and sign up / log in
+//   2. Create a new form — point it to obpmservices@gmail.com
+//   3. Copy the form ID (the part after /f/ in the endpoint URL)
+//   4. Replace REPLACE_FORM_ID below with that ID (e.g., "xbjnkpqz")
+const FORMSPREE_ID = 'REPLACE_FORM_ID';
+---
+<section id="contact" class="contact" aria-labelledby="contact-heading">
+  <div class="container contact-inner">
+
+    <div class="contact-form-wrap">
+      <p class="section-label">Get in Touch</p>
+      <h2 id="contact-heading">Let's Start a Conversation</h2>
+      <div class="divider"></div>
+      <p class="contact-intro">
+        We'd love to learn about your situation. Reach out and we'll respond
+        within one business day — no pressure, just a friendly conversation.
+      </p>
+
+      <!-- Success state — hidden by default, shown by JS after submit -->
+      <div id="contact-success" class="contact-success" hidden>
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+          <circle cx="20" cy="20" r="19" stroke="#8aa090" stroke-width="1.5"/>
+          <path d="M12 20l6 6 10-10" stroke="#8aa090" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <h3>Thank you for reaching out!</h3>
+          <p>We'll be in touch within one business day. If your need is urgent, please call us directly at <a href="tel:8587221930">858-722-1930</a>.</p>
+        </div>
+      </div>
+
+      <form
+        id="contact-form"
+        action={`https://formspree.io/f/${FORMSPREE_ID}`}
+        method="POST"
+        novalidate
+      >
+        <!-- Honeypot field — hidden from real users, traps automated bots -->
+        <input
+          type="text"
+          name="_gotcha"
+          tabindex="-1"
+          autocomplete="off"
+          aria-hidden="true"
+          style="display:none;position:absolute;left:-9999px;"
+        />
+
+        <div class="form-row">
+          <label for="cf-name">
+            Name <span class="required" aria-hidden="true">*</span>
+          </label>
+          <input
+            id="cf-name"
+            name="name"
+            type="text"
+            required
+            aria-required="true"
+            autocomplete="name"
+            placeholder="Your full name"
+          />
+        </div>
+
+        <div class="form-row">
+          <label for="cf-email">
+            Email <span class="required" aria-hidden="true">*</span>
+          </label>
+          <input
+            id="cf-email"
+            name="email"
+            type="email"
+            required
+            aria-required="true"
+            autocomplete="email"
+            placeholder="you@example.com"
+          />
+        </div>
+
+        <div class="form-row">
+          <label for="cf-phone">Phone <span class="optional">(optional)</span></label>
+          <input
+            id="cf-phone"
+            name="phone"
+            type="tel"
+            autocomplete="tel"
+            placeholder="(619) 555-0100"
+          />
+        </div>
+
+        <div class="form-row">
+          <label for="cf-topic">
+            I'm asking about <span class="required" aria-hidden="true">*</span>
+          </label>
+          <select id="cf-topic" name="topic" required aria-required="true">
+            <option value="" disabled selected>Choose a topic…</option>
+            <option value="For myself">For myself</option>
+            <option value="For a parent or loved one">For a parent or loved one</option>
+            <option value="General inquiry">General inquiry</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <label for="cf-message">
+            Message <span class="required" aria-hidden="true">*</span>
+          </label>
+          <textarea
+            id="cf-message"
+            name="message"
+            required
+            aria-required="true"
+            rows="5"
+            placeholder="Tell us a little about your situation — we'd love to help…"
+          ></textarea>
+        </div>
+
+        <div class="form-row form-row--checkbox">
+          <input
+            id="cf-consent"
+            name="consent"
+            type="checkbox"
+            required
+            aria-required="true"
+          />
+          <label for="cf-consent">
+            I agree to be contacted about my inquiry. My information will not be
+            shared with third parties.
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary form-submit">
+          Send Message
+        </button>
+      </form>
+    </div>
+
+    <!-- Alternative contact paths (many seniors prefer to call) -->
+    <aside class="contact-alt" aria-label="Alternative contact options">
+      <div class="contact-alt-inner">
+        <h3>Prefer to call?</h3>
+        <p class="contact-alt-lead">Many of our clients prefer a phone call — we do too. It's the easiest way to get started.</p>
+
+        <div class="contact-method">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M3 5a2 2 0 0 1 2-2h1.5l2 4.5-1.5 1.5a10.5 10.5 0 0 0 4 4L12.5 11.5 17 13.5V15a2 2 0 0 1-2 2C7.163 17 3 12.837 3 8V5z" stroke="#8aa090" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div>
+            <p class="method-label">Phone</p>
+            <a href="tel:8587221930" class="method-value">858-722-1930</a>
+          </div>
+        </div>
+
+        <div class="contact-method">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <rect x="2" y="4" width="16" height="12" rx="2" stroke="#8aa090" stroke-width="1.25"/>
+            <path d="M2 7l8 5 8-5" stroke="#8aa090" stroke-width="1.25" stroke-linecap="round"/>
+          </svg>
+          <div>
+            <p class="method-label">Email</p>
+            <a href="mailto:obpmservices@gmail.com" class="method-value">obpmservices@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="contact-method">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <circle cx="10" cy="10" r="8.5" stroke="#8aa090" stroke-width="1.25"/>
+            <path d="M10 5.5v4.5l2.5 2.5" stroke="#8aa090" stroke-width="1.25" stroke-linecap="round"/>
+          </svg>
+          <div>
+            <p class="method-label">Hours</p>
+            <p class="method-value-plain">Monday – Friday<br>9:00 am – 5:00 pm PT</p>
+          </div>
+        </div>
+
+        <div class="contact-area">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M10 2C6.686 2 4 4.686 4 8c0 4.5 6 10 6 10s6-5.5 6-10c0-3.314-2.686-6-6-6z" stroke="#8aa090" stroke-width="1.25"/>
+            <circle cx="10" cy="8" r="2" stroke="#8aa090" stroke-width="1.25"/>
+          </svg>
+          <div>
+            <p class="method-label">Service Area</p>
+            <p class="method-value-plain">Carmel Valley · Rancho Bernardo<br>and surrounding North County communities</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .contact {
+    background: var(--surface);
+  }
+
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+
+  .contact-intro {
+    font-size: 1rem;
+    color: var(--muted);
+    margin-bottom: 1.75rem;
+    line-height: 1.7;
+  }
+
+  /* Success state */
+  .contact-success {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: rgb(138 160 144 / 0.1);
+    border: 1px solid rgb(138 160 144 / 0.3);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .contact-success[hidden] { display: none; }
+
+  .contact-success svg { flex-shrink: 0; margin-top: 0.2rem; }
+
+  .contact-success h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+    color: var(--ink);
+  }
+
+  .contact-success p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    max-width: none;
+  }
+
+  /* Form */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .form-row label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .required { color: var(--accent); }
+
+  .optional {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .form-row input,
+  .form-row select,
+  .form-row textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--text);
+    background: var(--cream);
+    border: 1px solid rgb(31 58 82 / 0.2);
+    border-radius: var(--radius);
+    transition: border-color var(--transition), box-shadow var(--transition);
+    min-height: 48px;  /* accessible touch target */
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .form-row select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235e6b73' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+    cursor: pointer;
+  }
+
+  .form-row textarea { resize: vertical; min-height: 130px; }
+
+  .form-row input:focus,
+  .form-row select:focus,
+  .form-row textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgb(176 141 79 / 0.15);
+  }
+
+  .form-row input:invalid:not(:placeholder-shown),
+  .form-row select:invalid:not(:placeholder-shown),
+  .form-row textarea:invalid:not(:placeholder-shown) {
+    border-color: #c0392b;
+  }
+
+  /* Checkbox row */
+  .form-row--checkbox {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .form-row--checkbox input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    min-height: unset;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+    accent-color: var(--accent);
+    cursor: pointer;
+  }
+
+  .form-row--checkbox label {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.5;
+    cursor: pointer;
+  }
+
+  .form-submit { align-self: flex-start; }
+
+  /* Alternative contact */
+  .contact-alt-inner {
+    background: var(--cream);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    position: sticky;
+    top: calc(var(--nav-height) + 1.5rem);
+  }
+
+  .contact-alt h3 {
+    font-size: 1.25rem;
+    color: var(--ink);
+    margin-bottom: 0;
+  }
+
+  .contact-alt-lead {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: none;
+  }
+
+  .contact-method,
+  .contact-area {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .contact-method svg,
+  .contact-area svg { flex-shrink: 0; margin-top: 0.1rem; }
+
+  .method-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 0.1rem;
+    max-width: none;
+  }
+
+  .method-value {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .method-value:hover { color: var(--accent); }
+
+  .method-value-plain {
+    font-size: 0.9rem;
+    color: var(--text);
+    line-height: 1.5;
+    max-width: none;
+  }
+
+  @media (max-width: 900px) {
+    .contact-inner {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-alt-inner { position: static; }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const success = document.getElementById('contact-success') as HTMLElement | null;
+
+  if (form && success) {
+    form.addEventListener('submit', async (e: Event) => {
+      e.preventDefault();
+
+      // Client-side validation before fetch
+      if (!form.reportValidity()) return;
+
+      const btn = form.querySelector('[type="submit"]') as HTMLButtonElement;
+      const originalText = btn.textContent ?? 'Send Message';
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+
+        if (res.ok) {
+          form.hidden = true;
+          success.hidden = false;
+          success.setAttribute('aria-live', 'polite');
+          // Move focus to success message
+          const heading = success.querySelector('h3') as HTMLElement | null;
+          heading?.focus();
+        } else {
+          const data = await res.json().catch(() => ({}));
+          const msg = (data as { errors?: Array<{ message: string }> }).errors
+            ? (data as { errors: Array<{ message: string }> }).errors.map(e => e.message).join(', ')
+            : 'Something went wrong. Please call us directly at 858-722-1930.';
+          alert(msg);
+          btn.disabled = false;
+          btn.textContent = originalText;
+        }
+      } catch {
+        alert('A network error occurred. Please try again or call us at 858-722-1930.');
+        btn.disabled = false;
+        btn.textContent = originalText;
+      }
+    });
+  }
+</script>
