@@ -4,39 +4,17 @@
   <div class="container about-inner">
 
     <div class="about-photo reveal">
-      <!--
-        TODO: Replace this placeholder with Donna's actual photo before launch.
-        Recommended: a warm, professional portrait (400×500px).
-        Steps:
-          1. Save the photo as: public/founder.jpg
-          2. Uncomment the <img> below and remove the .photo-placeholder div.
-          3. Update the alt text with Donna's full name and a brief description.
-
-        <img
-          src="/obsenior_website/founder.jpg"
-          alt="[Founder Name], founder of OB Senior Concierge"
-          width="400"
-          height="500"
-          loading="lazy"
-          class="founder-photo"
-        />
-      -->
-      <div class="photo-placeholder" role="img" aria-label="Founder photo — coming soon">
-        <div class="placeholder-inner">
-          <svg width="48" height="60" viewBox="0 0 48 60" fill="none" aria-hidden="true">
-            <circle cx="24" cy="20" r="12" stroke="#8aa090" stroke-width="1.5"/>
-            <path d="M4 56c0-11.046 8.954-20 20-20s20 8.954 20 20" stroke="#8aa090" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-          <p>Founder photo<br>coming soon</p>
-        </div>
-      </div>
+      <img
+        src={`${import.meta.env.BASE_URL.replace(/\/?$/, '/')}founder.jpg`}
+        alt="Donna O'Brien, founder of OB Senior Concierge"
+        width="400"
+        height="500"
+        loading="lazy"
+        class="founder-photo"
+      />
       <div class="about-credential">
         <div class="credential-line"></div>
-        <!--
-          TODO: Add Donna's name and a brief credential or title below.
-          Example: "Donna Halliday — Founder, OB Senior Concierge"
-        -->
-        <p class="credential-name">Donna Halliday</p>
+        <p class="credential-name">Donna O'Brien</p>
         <p class="credential-title">Founder, OB Senior Concierge</p>
       </div>
     </div>
