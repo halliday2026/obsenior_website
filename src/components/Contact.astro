@@ -311,6 +311,8 @@ const FORMSPREE_ID = 'mredrjjr';
   }
 
   .form-row--checkbox input[type="checkbox"] {
+    appearance: auto;
+    -webkit-appearance: auto;
     width: 20px;
     height: 20px;
     min-height: unset;
@@ -422,7 +424,7 @@ const FORMSPREE_ID = 'mredrjjr';
         });
 
         if (res.ok) {
-          form.hidden = true;
+          form.style.display = 'none';
           success.hidden = false;
           success.setAttribute('aria-live', 'polite');
           // Move focus to success message
