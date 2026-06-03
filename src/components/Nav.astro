@@ -1,11 +1,10 @@
 ---
-import OBMonogram from './OBMonogram.astro';
 const base = import.meta.env.BASE_URL;
 ---
 <header class="site-nav" role="banner">
   <nav class="nav-inner container" aria-label="Main navigation">
     <a href={`${base}#hero`} class="nav-brand" aria-label="OB Senior Concierge — home">
-      <OBMonogram size={40} />
+      <img src={`${import.meta.env.BASE_URL.replace(/\/?$/, '/')}ob-logo.png`} alt="OB Senior Concierge logo" class="nav-logo" />
       <div class="nav-wordmark">
         <span class="wordmark-name">OB Senior Concierge</span>
         <span class="wordmark-tag">Professional Support for Independent Living</span>
@@ -67,6 +66,12 @@ const base = import.meta.env.BASE_URL;
     text-decoration: none;
     color: var(--ink);
     flex-shrink: 0;
+  }
+
+  .nav-logo {
+    height: 56px;
+    width: auto;
+    display: block;
   }
 
   .nav-wordmark {

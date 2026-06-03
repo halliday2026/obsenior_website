@@ -1,17 +1,16 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// GitHub Pages project-site configuration.
-// The 'base' must match the GitHub repository name exactly.
-// Current repo: halliday2026/obsenior_website → base: '/obsenior_website'
+// Custom domain configuration.
+// Site is served from obhelp.com — no 'base' needed (assets live at root /).
 //
-// TO CHANGE: If the repo is renamed or a custom domain is added:
-//   - Custom domain (e.g. obsenior.com): remove 'base' entirely, set site to 'https://obsenior.com'
-//   - Renamed repo (e.g. ob-senior-concierge): change base to '/ob-senior-concierge'
+// TO REVERT to GitHub Pages project URL:
+//   - Set site back to 'https://halliday2026.github.io'
+//   - Add base: '/obsenior_website'
+//   - Remove public/CNAME
 
 export default defineConfig({
-  site: 'https://halliday2026.github.io',
-  base: '/obsenior_website',
+  site: 'https://obhelp.com',
   output: 'static',
   integrations: [
     sitemap(),
