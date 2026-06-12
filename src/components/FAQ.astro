@@ -1,0 +1,165 @@
+---
+const faqs = [
+  {
+    q: 'What is a senior concierge?',
+    a: 'A senior concierge is a personal assistant who helps older adults manage the practical tasks of daily life — things like scheduling appointments, running errands, handling paperwork, and coordinating transportation. Unlike home care agencies, a senior concierge focuses on lifestyle management and administrative support rather than personal or medical assistance. At OB Senior Concierge, every service is delivered personally by Donna O\'Brien, ensuring consistency and trust.',
+  },
+  {
+    q: 'Do you provide senior transportation in San Diego?',
+    a: 'Yes. OB Senior Concierge provides rides to appointments, errands, and local destinations throughout North County San Diego, including Carmel Valley, Rancho Bernardo, Del Mar, Solana Beach, and Poway. Transportation is always accompanied — meaning the same familiar person drives and stays with you, rather than arranging a separate rideshare.',
+  },
+  {
+    q: 'Which areas of North County San Diego do you serve?',
+    a: 'OB Senior Concierge serves Carmel Valley, Rancho Bernardo, Del Mar, Solana Beach, Poway, 4S Ranch, Scripps Ranch, and the surrounding North County San Diego communities. If you are unsure whether your neighborhood is within the service area, please call 858-722-1930 for a quick confirmation.',
+  },
+  {
+    q: 'What is the difference between a senior concierge and a home care agency?',
+    a: 'A home care agency provides licensed caregiving — personal hygiene assistance, medication management, and medical support. A senior concierge like OB Senior Concierge focuses on non-medical lifestyle management: errands, scheduling, administrative tasks, transportation, and social visits. No medical license or caregiving certification is required, and no medical services are offered or implied.',
+  },
+  {
+    q: 'How much does a personal assistant for seniors cost in San Diego?',
+    a: 'OB Senior Concierge offers monthly plans starting at $640–$800 for four hours of support per week, and $1,280–$1,600 for eight hours per week. Premium and fully custom packages are also available. Every plan begins with a complimentary consultation — no contracts or hidden fees.',
+  },
+  {
+    q: 'Who typically uses a senior concierge service?',
+    a: 'Senior concierge services are ideal for independent older adults who want a trusted extra hand with life\'s administrative and logistical demands — not medical or personal care, but practical support that keeps daily life running smoothly. Families of seniors who live nearby or at a distance also use the service for the peace of mind of having a reliable, consistent presence in their loved one\'s life.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(f => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<section id="faq" class="faq" aria-labelledby="faq-heading">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-label">Common Questions</p>
+      <h2 id="faq-heading">Frequently Asked Questions</h2>
+      <div class="divider"></div>
+      <p class="section-intro">
+        Everything you need to know about senior concierge services in North County San Diego.
+      </p>
+    </div>
+
+    <dl class="faq-list reveal">
+      {faqs.map((faq, i) => (
+        <div class="faq-item">
+          <dt>
+            <button
+              class="faq-question"
+              aria-expanded="false"
+              aria-controls={`faq-a${i}`}
+              id={`faq-q${i}`}
+            >
+              <span>{faq.q}</span>
+              <svg class="faq-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </dt>
+          <dd class="faq-answer" id={`faq-a${i}`} hidden>
+            <p>{faq.a}</p>
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.faq-question');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      const answerId = btn.getAttribute('aria-controls');
+      const answer = answerId ? document.getElementById(answerId) : null;
+      btn.setAttribute('aria-expanded', String(!expanded));
+      if (answer) answer.hidden = expanded;
+    });
+  });
+</script>
+
+<style>
+  .faq {
+    background: var(--cream);
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgb(31 58 82 / 0.12);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid rgb(31 58 82 / 0.12);
+  }
+
+  .faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: var(--font-serif);
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.35;
+    transition: color var(--transition);
+  }
+
+  .faq-question:hover { color: var(--accent); }
+  .faq-question[aria-expanded='true'] { color: var(--accent); }
+
+  .faq-question:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .faq-chevron {
+    flex-shrink: 0;
+    color: var(--sage);
+    transition: transform var(--transition);
+  }
+
+  .faq-question[aria-expanded='true'] .faq-chevron {
+    transform: rotate(180deg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-chevron { transition: none; }
+    .faq-question { transition: none; }
+  }
+
+  .faq-answer {
+    padding-bottom: 1.75rem;
+    margin: 0;
+  }
+
+  .faq-answer[hidden] { display: none; }
+
+  .faq-answer p {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 72ch;
+  }
+</style>

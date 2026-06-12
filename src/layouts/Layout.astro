@@ -10,8 +10,8 @@ interface Props {
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/'); // normalize: always ends with /
 
 const {
-  title = 'OB Senior Concierge | Non-Medical Senior Support San Diego',
-  description = 'Personalized, non-medical senior concierge services in Carmel Valley, Rancho Bernardo, and North County San Diego. Administrative support, scheduling, errands, and more.',
+  title = 'Senior Concierge San Diego | OB Senior Concierge',
+  description = 'Senior concierge, personal assistant, and senior transportation services in Carmel Valley, Rancho Bernardo, and North County San Diego. Call 858-722-1930.',
   ogImage = `${Astro.site}${base.replace(/^\//, '')}og-image.jpg`,
 } = Astro.props;
 
@@ -19,19 +19,44 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const jsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
+  '@type': ['LocalBusiness', 'ProfessionalService'],
   name: 'OB Senior Concierge',
-  description: 'Non-medical senior concierge and support services in North County San Diego.',
+  description: 'Non-medical senior concierge and lifestyle management services in North County San Diego. Personalized support including administrative assistance, scheduling, errands, transportation, and social visits — delivered by one consistent, trusted person.',
+  url: 'https://obhelp.com',
   telephone: '858-722-1930',
   email: 'obpmservices@gmail.com',
-  url: 'https://halliday2026.github.io/obsenior_website',
+  priceRange: '$$',
+  founder: { '@type': 'Person', name: 'Donna O\'Brien' },
   areaServed: [
     { '@type': 'City', name: 'Carmel Valley' },
     { '@type': 'City', name: 'Rancho Bernardo' },
+    { '@type': 'City', name: 'Del Mar' },
+    { '@type': 'City', name: 'Solana Beach' },
+    { '@type': 'City', name: 'Poway' },
+    { '@type': 'City', name: '4S Ranch' },
+    { '@type': 'City', name: 'Scripps Ranch' },
+    { '@type': 'AdministrativeArea', name: 'North County San Diego' },
     { '@type': 'City', name: 'San Diego' },
   ],
-  serviceType: 'Non-medical senior support and concierge services',
-  priceRange: '$$',
+  serviceType: [
+    'Senior Concierge Services',
+    'Personal Assistant for Seniors',
+    'Senior Transportation Services',
+    'Senior Lifestyle Management',
+    'Administrative Support for Seniors',
+    'Errand Services for Seniors',
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Senior Concierge Services',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Administrative & Technology Support', description: 'Organizing paperwork, bills, and mail; help with online accounts, email, and everyday technology.' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Scheduling & Coordination', description: 'Appointment scheduling and reminders, service coordination and planning, calendar management.' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Personal Organization', description: 'Light organization of home and workspace, sorting files, belongings, and storage.' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Senior Transportation', description: 'Rides to appointments and errands throughout North County San Diego, accompaniment as needed.' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Concierge Assistance', description: 'Errands and local tasks, friendly social visits, meal prep reminders, flexible support.' } },
+    ],
+  },
 };
 ---
 <!doctype html>

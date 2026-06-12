@@ -14,7 +14,7 @@ support service based in San Diego (North County: Carmel Valley, Rancho Bernardo
 
 ```bash
 npm install        # Install dependencies
-npm run dev        # Start dev server (http://localhost:4321/obsenior_website/)
+npm run dev        # Start dev server (http://localhost:4321/)
 npm run build      # Production build → dist/
 npm run preview    # Preview the production build locally
 npm run check      # TypeScript / Astro type checking
@@ -29,15 +29,16 @@ src/
   layouts/
     Layout.astro        # Base HTML shell — SEO, fonts, JSON-LD, skip link
   components/
-    OBMonogram.astro    # Reusable SVG "OB" monogram (used in Nav + Footer)
+    OBMonogram.astro    # SVG "OB" monogram (kept for reference; Nav/Footer now use ob-logo.png)
     Nav.astro           # Sticky navigation, mobile hamburger
-    Hero.astro          # Hero section (photo placeholder)
+    Hero.astro          # Hero section
     Reassurance.astro   # Dark empathy band
     Services.astro      # 5 service cards with inline SVG icons
     HowItWorks.astro    # 3-step process flow
     Pricing.astro       # 3 pricing plan cards
-    About.astro         # Founder section (photo + bio placeholder)
-    Contact.astro       # Formspree contact form + phone/email fallback
+    FAQ.astro           # FAQ section (6 Q&As) + FAQPage JSON-LD schema
+    About.astro         # Founder section (Donna O'Brien)
+    Contact.astro       # Formspree contact form (ID: mzdqzkqj) + phone/email fallback
     Footer.astro        # Footer with nav, contact, copyright
   pages/
     index.astro         # Assembles all components; scroll-reveal JS
@@ -80,38 +81,36 @@ featured-plan badge, and primary buttons. Never use it for large fills or backgr
 
 ---
 
-## Deployment — GitHub Pages
+## Deployment — GitHub Pages + Custom Domain
 
-The site deploys to `https://halliday2026.github.io/obsenior_website/` via GitHub Actions.
+The site deploys to **`https://obhelp.com`** via GitHub Actions (push to `main`).
 
-**Base path:** Configured in `astro.config.mjs`:
+**Current config in `astro.config.mjs`:**
 ```js
-site: 'https://halliday2026.github.io',
-base: '/obsenior_website',   // matches repo name — change if repo is renamed
+site: 'https://obhelp.com',
+// No 'base' — custom domain serves from root /
 ```
 
-**First-time setup (one-time manual step):**
-1. In the GitHub repo → Settings → Pages → Source → select **"GitHub Actions"**
-2. Push to `main` — the workflow runs automatically
+**`public/CNAME`** contains `obhelp.com` — this preserves the custom domain across deploys.
+Do not delete this file.
 
-**Custom domain:** If Donna adds `obsenior.com` (or similar):
-1. Remove `base` from `astro.config.mjs`
-2. Update `site` to `'https://obsenior.com'`
-3. Add a `CNAME` file to `public/` containing just the domain name
+**If the domain ever changes:**
+1. Update `site` in `astro.config.mjs`
+2. Update `public/CNAME`
+3. Update the sitemap URL in `public/robots.txt`
+4. Update the `url` field in the `jsonLd` object in `src/layouts/Layout.astro`
 
 ---
 
-## Placeholders — Must Fill Before Launch
+## Remaining Placeholders
 
-| # | What | Where | Action |
+| # | What | Where | Status |
 |---|------|-------|--------|
-| 1 | **Formspree form ID** | `src/components/Contact.astro` line ~6 | Replace `REPLACE_FORM_ID` with real ID from formspree.io |
-| 2 | **Founder photo** | `src/components/About.astro` | Add `public/founder.jpg` (400×500px), uncomment `<img>`, remove `.photo-placeholder` div |
-| 3 | **Founder bio** | `src/components/About.astro` | Replace placeholder paragraphs with Donna's actual story |
-| 4 | **Hero photography** | `src/components/Hero.astro` | Add real photo, replace `.hero-placeholder` div with `<img>` |
-| 5 | **OG image** | `src/layouts/Layout.astro` | Add `public/og-image.jpg` (1200×630px); it auto-loads from `Astro.site` |
-| 6 | **Pricing confirmation** | `src/components/Pricing.astro` | Verify all dollar amounts before going live |
-| 7 | **GH Pages source** | GitHub repo Settings → Pages | Set to "GitHub Actions" before first push |
+| 1 | **OG image** | `src/layouts/Layout.astro` | Add `public/og-image.jpg` (1200×630px) — auto-loads from `Astro.site` |
+| 2 | **Founder bio** | `src/components/About.astro` | Replace placeholder paragraphs with Donna's story |
+| 3 | **Pricing confirmation** | `src/components/Pricing.astro` | Verify all dollar amounts before launch |
+
+*Already completed:* Formspree ID (mzdqzkqj), founder photo (public/founder.jpg), hero photo (public/hero-photo.jpg), GitHub Pages source set, custom domain configured.
 
 ---
 
@@ -139,5 +138,43 @@ base: '/obsenior_website',   // matches repo name — change if repo is renamed
 
 The site must **never** imply medical, clinical, nursing, or caregiving services.
 Keep all copy in the domain of: administrative support, scheduling, organization,
-companionship, errands, and coordination. If in doubt, lean on words like
-"support," "assistance," "coordination," and "concierge."
+errands, and coordination. If in doubt, lean on words like "support," "assistance,"
+"coordination," and "concierge."
+
+**Red-light words (do not use):** companion, companionship, caregiver, home care,
+home help, patient (as noun), sitting, care plan, activities of daily living, ADLs.
+
+---
+
+## SEO & AEO Strategy
+
+**Live URL:** https://obhelp.com
+**Validate schemas:** https://search.google.com/test/rich-results
+
+### Target Keywords
+All paired with "San Diego" or "North County San Diego":
+- Senior Concierge *(primary)*
+- Personal Assistant for Seniors *(primary)*
+- Senior Assistant
+- Senior Transportation
+- Senior Lifestyle Management
+- Errand Service for Seniors
+
+### Structured Data in Place (`src/layouts/Layout.astro`)
+- **LocalBusiness + ProfessionalService** — dual `@type`, includes `founder` (Donna O'Brien),
+  `serviceType` array, `hasOfferCatalog` with all 5 services, expanded `areaServed`
+- **FAQPage** — in `src/components/FAQ.astro` via inline `<script type="application/ld+json">`
+
+### Service Area (areaServed in JSON-LD)
+Carmel Valley, Rancho Bernardo, Del Mar, Solana Beach, Poway, 4S Ranch, Scripps Ranch,
+North County San Diego, San Diego.
+*Update the `areaServed` array in `Layout.astro` if the service area expands.*
+
+### FAQ Component (`src/components/FAQ.astro`)
+Contains 6 targeted Q&As — the primary AEO asset. If pricing, services, or service area
+changes, update both the visible answer text in the `faqs` array AND the `faqSchema`
+object in the same file — they must stay in sync.
+
+### Approved Vocabulary
+lifestyle management, personal assistant, errand runner, home organizer,
+vendor coordinator, tech tutoring, administrative support, social visits.
