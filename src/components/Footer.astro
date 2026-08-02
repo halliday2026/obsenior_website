@@ -56,6 +56,9 @@ const base = import.meta.env.BASE_URL;
         assistance, medical care, wound care, or medication management. All services are
         strictly task-based and non-medical.
       </p>
+      <p class="footer-credit">
+        Website by <a href="https://hallidayinc.com?utm_source=obhelp&utm_medium=referral&utm_campaign=footer-credit" target="_blank" rel="noopener noreferrer">Halliday</a>
+      </p>
     </div>
   </div>
 </footer>
@@ -195,6 +198,21 @@ const base = import.meta.env.BASE_URL;
   .footer-disclaimer {
     font-size: 0.72rem !important;
     font-style: italic;
+  }
+
+  .footer-credit {
+    flex-basis: 100%;
+  }
+
+  .footer-credit a {
+    color: rgb(247 243 236 / 0.55);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .footer-credit a:hover,
+  .footer-credit a:focus-visible {
+    color: var(--accent);
   }
 
   @media (max-width: 820px) {
