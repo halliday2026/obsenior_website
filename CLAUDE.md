@@ -27,7 +27,7 @@ npm run check      # TypeScript / Astro type checking
 ```
 src/
   layouts/
-    Layout.astro        # Base HTML shell — SEO, fonts, JSON-LD, skip link
+    Layout.astro        # Base HTML shell — SEO, fonts, JSON-LD, Plausible analytics, skip link
   components/
     OBMonogram.astro    # SVG "OB" monogram (kept for reference; Nav/Footer now use ob-logo.png)
     Nav.astro           # Sticky navigation, mobile hamburger
@@ -143,6 +143,14 @@ errands, and coordination. If in doubt, lean on words like "support," "assistanc
 
 **Red-light words (do not use):** companion, companionship, caregiver, home care,
 home help, patient (as noun), sitting, care plan, activities of daily living, ADLs.
+
+---
+
+## Analytics
+
+Privacy-friendly analytics via **Plausible** (script + init snippet in `<head>` of
+`src/layouts/Layout.astro`, site ID `pa-RyNmibZQDlq_nF09Tm-R7`). No cookie consent
+banner required. Dashboard: https://plausible.io
 
 ---
 
